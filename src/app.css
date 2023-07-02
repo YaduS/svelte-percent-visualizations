@@ -3,6 +3,7 @@ body {
   width: 100%;
   --primary-text-color: #444;
   --primary-bg-color: #fcfcfc;
+  background-color: lightgrey;
 }
 
 * {
@@ -10,4 +11,17 @@ body {
   padding: 0;
   font-family: Poppins, sans-serif;
   color: var(--primary-text-color);
+}
+
+/* remove scrollbars from input type number */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
 }
