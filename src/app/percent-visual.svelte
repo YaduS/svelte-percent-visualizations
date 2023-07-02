@@ -7,11 +7,15 @@
 
 <div class="container">
   <div class="current" style="width: {percent}%;">
-    Marks obtained: {current}
+    <em>Marks obtained:&nbsp;</em>
+    <strong>{current}</strong>
   </div>
-  <div class="total">Out of total Mark: {total}</div>
+  <div class="total">
+    <em>Out of total Mark:&nbsp;</em> <strong>{total}</strong>
+  </div>
   <div class="percent" style="width: {percent}%;">
-    Calculated percentage: {percent}%
+    <em>Calculated percentage:&nbsp;</em>
+    <strong>{percent}%</strong>
   </div>
 </div>
 
@@ -28,9 +32,17 @@
   .total,
   .percent {
     height: 40px;
-    display: grid;
-    place-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #fcfcfc;
+  }
+  em,
+  strong {
+    color: #fcfcfc;
+  }
+  em {
+    font-size: 0.75rem;
   }
   .current {
     background-color: #515e3d;
