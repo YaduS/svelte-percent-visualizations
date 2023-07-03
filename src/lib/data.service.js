@@ -12,13 +12,8 @@ export const tableData = writable([
     id: 2,
   },
   {
-    score: 118,
-    total: 120,
-    id: 5,
-  },
-  {
-    score: 23,
-    total: 50,
+    score: 120,
+    total: 90,
     id: 3,
   },
 ]);

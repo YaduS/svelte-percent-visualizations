@@ -27,12 +27,12 @@
         >
         <td>
           <label>
-            <input type="number" bind:value={scoreDetail.score} max="1000" />
+            <input type="number" bind:value={scoreDetail.score} />
           </label>
         </td>
         <td>
           <label>
-            <input type="number" bind:value={scoreDetail.total} max="1000" />
+            <input type="number" bind:value={scoreDetail.total} />
           </label>
         </td>
         <td
