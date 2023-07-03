@@ -2,20 +2,43 @@
   import { calcPercent } from '../lib/util';
   export let current;
   export let total;
-  $: percent = calcPercent(current, total);
+  $: currentPercent = calcPercent(current, total);
+  $: totalPercent = calcPercent(total, current);
 </script>
 
 <div class="container">
-  <div class="current" style="width: {percent}%;">
+  <div
+    class="bar current"
+    style="width: {currentPercent > totalPercent ? 100 : currentPercent}%;"
+  >
     <em>Marks obtained:&nbsp;</em>
     <strong>{current}</strong>
   </div>
-  <div class="total">
+  <div
+    class="bar total"
+    style="width: {currentPercent > totalPercent ? totalPercent : 100}%;"
+  >
     <em>Out of total Mark:&nbsp;</em> <strong>{total}</strong>
   </div>
-  <div class="percent" style="width: {percent}%;">
-    <em>Calculated percentage:&nbsp;</em>
-    <strong>{percent}%</strong>
+  <div
+    class="bar percent"
+    style="background-color: {currentPercent > totalPercent
+      ? 'var(--current-score-color)'
+      : 'var(--total-score-color)'};"
+  >
+    <div
+      class="bar progress"
+      style="background-color: {currentPercent > totalPercent
+        ? 'var(--total-score-color)'
+        : 'var(--current-score-color)'};
+        width: {currentPercent >= totalPercent
+        ? totalPercent
+        : currentPercent}%"
+    />
+    <span>
+      <em>Calculated percentage:&nbsp;</em>
+      <strong>{currentPercent}%</strong>
+    </span>
   </div>
 </div>
 
@@ -27,15 +50,16 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    --current-score-color: #039503;
+    --total-score-color: #a77213;
   }
-  .current,
-  .total,
-  .percent {
+  .bar {
     height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #fcfcfc;
+    transition: all 0.5s;
   }
   em,
   strong {
@@ -45,13 +69,22 @@
     font-size: 0.75rem;
   }
   .current {
-    background-color: #515e3d;
+    background-color: var(--current-score-color);
   }
   .total {
-    background-color: #2d6c2d;
-    width: 100%;
+    background-color: var(--total-score-color);
   }
   .percent {
-    background-color: #785d34;
+    width: 100%;
+    position: relative;
+  }
+  .percent span {
+    z-index: 1;
+  }
+  .progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
   }
 </style>

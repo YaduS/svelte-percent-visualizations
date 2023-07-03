@@ -1,7 +1,7 @@
 <script>
+  import { tableData as data } from '../lib/data.service';
   import { calcPercent } from '../lib/util';
 
-  export let data;
   export let selectedRowId;
 </script>
 
@@ -13,7 +13,7 @@
       <td><span>Out of Total Marks</span></td>
       <td><span>Percentage</span></td>
     </tr>
-    {#each data as scoreDetail (scoreDetail.id)}
+    {#each $data as scoreDetail (scoreDetail.id)}
       <tr>
         <td
           ><label>
