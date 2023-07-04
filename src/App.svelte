@@ -3,8 +3,10 @@
   import PercentVisual from './app/percent-visual.svelte';
   import SamplePercentTable from './app/sample-marks-percent-table.svelte';
   import { tableData } from './app/services/data.service';
-  let selectedRowId = $tableData[2].id;
+  let selectedRowId = $tableData[0].id;
+  $: selectedRow = $tableData.find(({ id }) => selectedRowId === id);
   let showTableVisualizations = true;
+  let showSelectedTableVisualizations = true;
 </script>
 
 <div class="wrapper">
@@ -12,6 +14,23 @@
   <main>
     <SamplePercentTable bind:selectedRowId />
   </main>
+  <div class="selected-visualization-cnt">
+    <h2>
+      <span>Selected value visuals</span>
+      <button
+        on:click={() =>
+          (showSelectedTableVisualizations = !showSelectedTableVisualizations)}
+        class:open={showSelectedTableVisualizations}
+      >
+        <i class="bi bi-caret-down-square-fill" />
+      </button>
+    </h2>
+    {#if showSelectedTableVisualizations}
+      <div class="inner" transition:slide>
+        <PercentVisual current={selectedRow.score} total={selectedRow.total} />
+      </div>
+    {/if}
+  </div>
   <div class="visualization-cnt">
     <h2>
       <span>Table value visuals</span>
@@ -46,7 +65,8 @@
   h1 {
     margin: 0 0 2rem;
   }
-  .visualization-cnt {
+  .visualization-cnt,
+  .selected-visualization-cnt {
     border: 0.5px solid #444;
     border-radius: 8px;
     margin: 2rem 0;
@@ -54,31 +74,34 @@
     max-width: 100%;
     display: flex;
     flex-direction: column;
-  }
-  .visualization-cnt h2 {
-    border-bottom: 1px solid #444;
-    display: flex;
-    padding: 20px;
-    button {
-      background: none;
-      border: 1px solid #444;
-      padding: 5px;
-      border-radius: 3px;
-      margin-left: auto;
-      transition: transform 400ms;
-      display: grid;
-      place-items: center;
-      &.open {
-        transform: rotate(-180deg);
-      }
-      i {
-        font-size: 1rem;
+    h2 {
+      border-bottom: 1px solid #444;
+      display: flex;
+      padding: 20px;
+      button {
+        background: none;
+        border: 1px solid #444;
+        padding: 5px;
+        border-radius: 3px;
+        margin-left: auto;
+        transition: transform 400ms;
         display: grid;
         place-items: center;
+        &.open {
+          transform: rotate(-180deg);
+        }
+        i {
+          font-size: 1rem;
+          display: grid;
+          place-items: center;
+        }
+      }
+      &:last-child {
+        border-bottom: 0;
       }
     }
     &:last-child {
-      border-bottom: 0;
+      margin-top: 0;
     }
   }
 </style>
