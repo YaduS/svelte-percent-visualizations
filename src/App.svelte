@@ -1,7 +1,7 @@
 <script>
   import PercentVisual from './app/percent-visual.svelte';
   import SamplePercentTable from './app/sample-marks-percent-table.svelte';
-  import { tableData } from './lib/data.service';
+  import { tableData } from './app/services/data.service';
   let selectedRowId = $tableData[2].id;
 </script>
 

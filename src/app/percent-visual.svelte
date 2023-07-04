@@ -1,5 +1,5 @@
 <script>
-  import { calcPercent } from '../lib/util';
+  import { calcPercent } from './services/util';
   export let current;
   export let total;
   $: currentPercent = calcPercent(current, total);

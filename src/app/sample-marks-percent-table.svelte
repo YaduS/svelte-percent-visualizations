@@ -1,6 +1,6 @@
 <script>
-  import { tableData as data } from '../lib/data.service';
-  import { calcPercent } from '../lib/util';
+  import { tableData as data } from './services/data.service';
+  import { calcPercent } from './services/util';
 
   export let selectedRowId;
 </script>
