@@ -17,3 +17,12 @@ export const tableData = writable([
     id: 3,
   },
 ]);
+
+export const addRow = (row) => {
+  tableData.update((tData) => {
+    return [
+      ...tData,
+      row ? row : { id: tData.length + 1, score: 100, total: 100 },
+    ];
+  });
+};

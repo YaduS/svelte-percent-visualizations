@@ -1,5 +1,5 @@
 <script>
-  import { tableData as data } from './services/data.service';
+  import { addRow, tableData as data } from './services/data.service';
   import { calcPercent } from './services/util';
 
   export let selectedRowId;
@@ -48,10 +48,17 @@
         >
       </tr>
     {/each}
+    <tr>
+      <td colspan="4">
+        <button class="add-btn" on:click={() => addRow()}>
+          Add new marks <i class="bi bi-plus-circle" />
+        </button>
+      </td>
+    </tr>
   </tbody>
 </table>
 
-<style>
+<style lang="scss">
   table {
     border: 0.5px solid #444;
     overflow: hidden;
@@ -88,6 +95,26 @@
   td:first-child > label {
     display: grid;
     place-items: center;
+  }
+  tr:last-child {
+    td {
+      padding: 10px;
+      button {
+        background: transparent;
+        border-radius: 4px;
+        border: 1px solid #444;
+        width: 200px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        gap: 8px;
+        i {
+          font-size: 14px;
+        }
+      }
+    }
   }
   input {
     border: 0.5px solid transparent;

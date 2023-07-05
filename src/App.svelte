@@ -14,13 +14,15 @@
   <main>
     <SamplePercentTable bind:selectedRowId />
   </main>
-  <div class="selected-visualization-cnt">
+  <div
+    class="selected-visualization-cnt"
+    class:open={showSelectedTableVisualizations}
+  >
     <h2>
       <span>Selected value visuals</span>
       <button
         on:click={() =>
           (showSelectedTableVisualizations = !showSelectedTableVisualizations)}
-        class:open={showSelectedTableVisualizations}
       >
         <i class="bi bi-caret-down-square-fill" />
       </button>
@@ -31,12 +33,11 @@
       </div>
     {/if}
   </div>
-  <div class="visualization-cnt">
+  <div class="visualization-cnt" class:open={showTableVisualizations}>
     <h2>
       <span>Table value visuals</span>
       <button
         on:click={() => (showTableVisualizations = !showTableVisualizations)}
-        class:open={showTableVisualizations}
       >
         <i class="bi bi-caret-down-square-fill" />
       </button>
@@ -67,6 +68,9 @@
   }
   .visualization-cnt,
   .selected-visualization-cnt {
+    * {
+      transition: all 400ms;
+    }
     border: 0.5px solid #444;
     border-radius: 8px;
     margin: 2rem 0;
@@ -74,6 +78,12 @@
     max-width: 100%;
     display: flex;
     flex-direction: column;
+    &:not(.open) {
+      border-width: 0px;
+      h2 {
+        padding: 0 20px;
+      }
+    }
     h2 {
       border-bottom: 1px solid #444;
       display: flex;
@@ -84,10 +94,9 @@
         padding: 5px;
         border-radius: 3px;
         margin-left: auto;
-        transition: transform 400ms;
         display: grid;
         place-items: center;
-        &.open {
+        &:is(.open *) {
           transform: rotate(-180deg);
         }
         i {
@@ -97,7 +106,7 @@
         }
       }
       &:last-child {
-        border-bottom: 0;
+        border-bottom: 0px;
       }
     }
     &:last-child {
