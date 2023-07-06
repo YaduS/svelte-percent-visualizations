@@ -74,7 +74,7 @@
     border: 0.5px solid #444;
     border-radius: 8px;
     margin: 2rem 0;
-    width: 720px;
+    width: $table-width;
     max-width: 100%;
     display: flex;
     flex-direction: column;
