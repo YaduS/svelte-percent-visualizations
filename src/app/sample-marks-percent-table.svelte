@@ -11,6 +11,7 @@
       <td><span>Select</span></td>
       <td><span>Marks obtained</span></td>
       <td><span>Out of Total Marks</span></td>
+      <td><span>Hours Studied</span></td>
       <td><span>Percentage</span></td>
     </tr>
     {#each $data as scoreDetail (scoreDetail.id)}
@@ -35,6 +36,11 @@
             <input type="number" bind:value={scoreDetail.total} />
           </label>
         </td>
+        <td>
+          <label>
+            <input type="number" bind:value={scoreDetail.hoursStudied} />
+          </label>
+        </td>
         <td
           ><span
             ><span>({scoreDetail.score || '-'}/{scoreDetail.total || '-'})</span
@@ -49,7 +55,7 @@
       </tr>
     {/each}
     <tr>
-      <td colspan="4">
+      <td colspan="5">
         <button class="add-btn" on:click={() => addRow()}>
           Add new marks <i class="bi bi-plus-circle" />
         </button>
@@ -64,7 +70,7 @@
     overflow: hidden;
     border-radius: 8px;
     max-width: 100%;
-    width: 720px;
+    width: $table-width;
   }
   table,
   tr,
