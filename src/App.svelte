@@ -1,7 +1,7 @@
 <script>
   import { slide } from 'svelte/transition';
-  import PercentVisual from './app/percent-visual.svelte';
-  import SamplePercentTable from './app/sample-marks-percent-table.svelte';
+  import PercentVisual from './app/components/Percent-visual.svelte';
+  import SamplePercentTable from './app/components/Sample-marks-percent-table.svelte';
   import { tableData } from './app/services/data.service';
   let selectedRowId = $tableData[0].id;
   $: selectedRow = $tableData.find(({ id }) => selectedRowId === id);
