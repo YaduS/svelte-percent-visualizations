@@ -1,20 +1,18 @@
 <script>
-  import { slide } from 'svelte/transition';
-  import PercentVisual from './app/components/Percent-visual.svelte';
   import SamplePercentTable from './app/components/Sample-marks-percent-table.svelte';
+  import Tabs from './app/components/Tabs.svelte';
   import { tableData } from './app/services/data.service';
   let selectedRowId = $tableData[0].id;
   $: selectedRow = $tableData.find(({ id }) => selectedRowId === id);
-  let showTableVisualizations = true;
-  let showSelectedTableVisualizations = true;
 </script>
 
 <div class="wrapper">
   <h1>Percentage Calculations</h1>
   <main>
-    <SamplePercentTable bind:selectedRowId />
+    <SamplePercentTable />
   </main>
-  <div
+  <Tabs />
+  <!-- <div
     class="selected-visualization-cnt"
     class:open={showSelectedTableVisualizations}
   >
@@ -49,7 +47,7 @@
         {/each}
       </div>
     {/if}
-  </div>
+  </div> -->
 </div>
 
 <style lang="scss">
@@ -65,52 +63,5 @@
   }
   h1 {
     margin: 0 0 2rem;
-  }
-  .visualization-cnt,
-  .selected-visualization-cnt {
-    * {
-      transition: all 400ms;
-    }
-    border: 0.5px solid #444;
-    border-radius: 8px;
-    margin: 2rem 0;
-    width: $table-width;
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    &:not(.open) {
-      border-width: 0px;
-      h2 {
-        padding: 0 20px;
-      }
-    }
-    h2 {
-      border-bottom: 1px solid #444;
-      display: flex;
-      padding: 20px;
-      button {
-        background: none;
-        border: 1px solid #444;
-        padding: 5px;
-        border-radius: 3px;
-        margin-left: auto;
-        display: grid;
-        place-items: center;
-        &:is(.open *) {
-          transform: rotate(-180deg);
-        }
-        i {
-          font-size: 1rem;
-          display: grid;
-          place-items: center;
-        }
-      }
-      &:last-child {
-        border-bottom: 0px;
-      }
-    }
-    &:last-child {
-      margin-top: 0;
-    }
   }
 </style>

@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 
-export const tableData = writable([
+const initialTableData = [
   {
     score: 30,
     total: 100,
@@ -19,7 +19,9 @@ export const tableData = writable([
     hoursStudied: 4,
     id: 3,
   },
-]);
+];
+export const tableData = writable(initialTableData);
+export let selectedRowId = writable(initialTableData[0].id);
 
 export const addRow = (row) => {
   tableData.update((tData) => {

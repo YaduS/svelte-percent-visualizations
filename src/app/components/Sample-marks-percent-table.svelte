@@ -1,8 +1,10 @@
 <script>
-  import { addRow, tableData as data } from '../services/data.service';
+  import {
+    addRow,
+    tableData as data,
+    selectedRowId,
+  } from '../services/data.service';
   import { calcPercent } from '../services/util';
-
-  export let selectedRowId;
 </script>
 
 <table class="table-bordered">
@@ -21,7 +23,7 @@
             <input
               type="radio"
               value={scoreDetail.id}
-              bind:group={selectedRowId}
+              bind:group={$selectedRowId}
               name="row"
             />
           </label></td
