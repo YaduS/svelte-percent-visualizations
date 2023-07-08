@@ -3,7 +3,7 @@
   import { selectedRowId, tableData } from '../../services/data.service';
   import PercentVisual from './Percent-visual.svelte';
 
-  let showTableVisualizations = true;
+  let showTableVisualizations = false;
   $: selectedRow = $tableData.find(({ id }) => $selectedRowId === id);
 </script>
 
@@ -65,7 +65,7 @@
         transition: transform 400ms;
         display: grid;
         place-items: center;
-        &.open {
+        &:is(.open *) {
           transform: rotate(-180deg);
         }
         i {
