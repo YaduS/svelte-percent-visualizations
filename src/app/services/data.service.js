@@ -19,6 +19,24 @@ const initialTableData = [
     hoursStudied: 4,
     id: 3,
   },
+  {
+    score: 65,
+    total: 90,
+    hoursStudied: 2,
+    id: 4,
+  },
+  {
+    score: 75,
+    total: 90,
+    hoursStudied: 4,
+    id: 5,
+  },
+  {
+    score: 120,
+    total: 90,
+    hoursStudied: 8,
+    id: 6,
+  },
 ];
 export const tableData = writable(initialTableData);
 export let selectedRowId = writable(initialTableData[0].id);
