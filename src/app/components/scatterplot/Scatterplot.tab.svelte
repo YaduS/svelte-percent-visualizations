@@ -26,21 +26,23 @@
     .range([height - margin.top - margin.bottom, 0]);
 </script>
 
-<svg {width} {height}>
-  <AxisX {height} {xScale} {width} {margin} />
-  <AxisY {yScale} {height} {width} {margin} />
-  <g class="circles" transform="translate({margin.left} {margin.top})">
-    {#each $tableData as row}
-      <circle
-        cx={xScale(row.hoursStudied)}
-        cy={yScale(calcPercent(row.score, row.total))}
-        r="8"
-        fill="purple"
-        stroke="black"
-      />
-      <!-- todo: what is the way where we dont have to run calcPercent every time? --ys -->
-    {/each}
-  </g>
-</svg>
+<div class="chart-container" bind:clientWidth={width}>
+  <svg {width} {height}>
+    <AxisX {height} {xScale} {width} {margin} />
+    <AxisY {yScale} {height} {width} {margin} />
+    <g class="circles" transform="translate({margin.left} {margin.top})">
+      {#each $tableData as row}
+        <circle
+          cx={xScale(row.hoursStudied)}
+          cy={yScale(calcPercent(row.score, row.total))}
+          r="8"
+          fill="purple"
+          stroke="black"
+        />
+        <!-- todo: what is the way where we dont have to run calcPercent every time? --ys -->
+      {/each}
+    </g>
+  </svg>
+</div>
 
 <style lang="scss"></style>
