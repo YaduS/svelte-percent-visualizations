@@ -15,7 +15,7 @@
       component: ScatterplotTab,
     },
   ];
-  let activeTabId = 1;
+  let activeTabId = 2;
   const handleClick = (tabId) => () => (activeTabId = tabId);
 </script>
 
