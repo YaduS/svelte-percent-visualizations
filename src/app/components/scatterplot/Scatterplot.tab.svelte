@@ -5,6 +5,7 @@
   import { calcPercent } from '../../services/util';
   import AxisX from './AxisX.svelte';
   import AxisY from './AxisY.svelte';
+  import Tooltip from './Tooltip.svelte';
 
   let width = 400;
   let height = 400;
@@ -24,9 +25,15 @@
   $: yScale = scaleLinear()
     .domain([0, maxPercentage])
     .range([height - margin.top - margin.bottom, 0]);
+
+  let hoverData;
 </script>
 
-<div class="chart-container" bind:clientWidth={width}>
+<div
+  class="chart-container"
+  bind:clientWidth={width}
+  on:mouseleave={() => (hoverData = null)}
+>
   <svg {width} {height}>
     <AxisX {height} {xScale} {width} {margin} />
     <AxisY {yScale} {height} {width} {margin} />
@@ -38,11 +45,15 @@
           r="8"
           fill="purple"
           stroke="black"
+          on:mouseover={() => (hoverData = row)}
         />
         <!-- todo: what is the way where we dont have to run calcPercent every time? --ys -->
       {/each}
     </g>
   </svg>
+  {#if hoverData}
+    <Tooltip data={hoverData} {xScale} {yScale} />
+  {/if}
 </div>
 
 <style lang="scss"></style>
