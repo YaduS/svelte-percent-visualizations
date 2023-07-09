@@ -1,9 +1,11 @@
+@import './src/global.styles.scss';
+
 html,
 body {
   width: 100%;
   --primary-text-color: #444;
-  --primary-bg-color: #fcfcfc;
-  background-color: lightgrey;
+  --primary-bg-color: $primary-bg-color;
+  background-color: var(--primary-bg-color);
 }
 
 * {

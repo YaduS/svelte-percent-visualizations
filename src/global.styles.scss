@@ -1,2 +1,9 @@
-// global variables (to be configured in preprocessor to be used globally)
+// global variables (configured in preprocessor to be used globally)
 $table-width: 1028px;
+$border-color-1: #444;
+$primary-bg-color: rgba(255, 255, 255, 0.8);
+
+// bar chart colors
+$current-score-color: #039503;
+$custom-light-green: rgb(124 233 124);
+$total-score-color: #a77213;
