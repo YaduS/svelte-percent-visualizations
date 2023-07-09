@@ -83,5 +83,6 @@
   }
   circle {
     outline: none;
+    transition: all 200ms;
   }
 </style>

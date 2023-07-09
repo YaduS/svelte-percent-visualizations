@@ -50,7 +50,6 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    /* --current-score-color: #039503; */
     --current-score-color: #{$current-score-color};
     --total-score-color: #{$total-score-color};
   }

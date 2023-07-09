@@ -16,17 +16,18 @@
 <table class="table-bordered">
   <thead>
     <tr>
-      <th><span>Select</span></th>
-      <th><span>Marks obtained</span></th>
-      <th><span>Out of Total Marks</span></th>
-      <th><span>Hours Studied</span></th>
-      <th><span>Percentage</span></th>
+      <th class="select-radio"><span>Select</span></th>
+      <th class="name"><span>Name</span></th>
+      <th class="score"><span>Marks obtained</span></th>
+      <th class="total"><span>Out of Total Marks</span></th>
+      <th class="hours-studied"><span>Hours Studied</span></th>
+      <th class="percent"><span>Percentage</span></th>
     </tr>
   </thead>
   <tbody>
     {#each $data as scoreDetail (scoreDetail.id)}
-      <tr>
-        <td
+      <tr class:active={$selectedRowId === scoreDetail.id}>
+        <td class="select-radio"
           ><label>
             <input
               type="radio"
@@ -36,22 +37,27 @@
             />
           </label></td
         >
-        <td>
+        <td class="name">
+          <label>
+            <input type="text" bind:value={scoreDetail.name} />
+          </label>
+        </td>
+        <td class="score">
           <label>
             <input type="number" bind:value={scoreDetail.score} />
           </label>
         </td>
-        <td>
+        <td class="total">
           <label>
             <input type="number" bind:value={scoreDetail.total} />
           </label>
         </td>
-        <td>
+        <td class="hours-studied">
           <label>
             <input type="number" bind:value={scoreDetail.hoursStudied} />
           </label>
         </td>
-        <td
+        <td class="percent"
           ><span
             ><span>({scoreDetail.score || '-'}/{scoreDetail.total || '-'})</span
             ></span
@@ -65,9 +71,9 @@
       </tr>
     {/each}
     <tr>
-      <td colspan="5">
+      <td colspan="6">
         <button class="add-btn" on:click={() => addRow()}>
-          Add new marks <i class="bi bi-plus-circle" />
+          <strong>Add new marks</strong> <i class="bi bi-plus-circle" />
         </button>
       </td>
     </tr>
@@ -75,6 +81,9 @@
 </table>
 
 <style lang="scss">
+  * {
+    font-size: 16px;
+  }
   .info {
     margin: 1rem auto;
     max-width: 85%;
@@ -89,6 +98,25 @@
     width: $table-width;
     margin: auto;
   }
+  tr.active {
+    background-color: $custom-light-green;
+  }
+  th {
+    border: 0.5px solid #444;
+    padding: 12px 8px;
+    &:is(.score, .total, .hours-studied) {
+      width: 15%;
+    }
+    &.select-radio {
+      width: 10%;
+    }
+    &.name {
+      width: 20%;
+    }
+    &.percent {
+      width: 25%;
+    }
+  }
   table,
   tr,
   td,
@@ -96,9 +124,10 @@
     border-collapse: separate;
     border-spacing: 0;
   }
-  tr > *:is(td, th) {
+  tr > td {
     border: 0.5px solid #444;
     padding: 12px 8px;
+    text-align: center;
   }
   th:first-child {
     border-top-left-radius: 8px;
@@ -112,30 +141,33 @@
   tr:last-child td:last-child {
     border-bottom-right-radius: 8px;
   }
-  td:first-child {
+  td.select-radio {
     text-align: center;
     vertical-align: middle;
+    padding: 0;
+    height: 1px; // nasty hack for fic mentioned => https://stackoverflow.com/questions/3542090/how-to-make-div-fill-td-height
+    label {
+      display: grid;
+      place-items: center;
+      height: 100%;
+    }
   }
-  td:first-child > label {
-    display: grid;
-    place-items: center;
-  }
-  tr:last-child {
+  td:first-child > tr:last-child {
     td {
       padding: 10px;
       button {
-        background: transparent;
         border-radius: 4px;
         border: 1px solid #444;
-        width: 200px;
-        height: 30px;
+        padding: 10px 20px;
         display: flex;
         align-items: center;
         justify-content: center;
         margin: auto;
         gap: 8px;
+        font-size: 16px;
+        background-color: $custom-light-green;
         i {
-          font-size: 14px;
+          font-size: 18px;
         }
       }
     }
@@ -147,6 +179,10 @@
     border-radius: 2px;
     outline: none !important;
     background: none;
+    max-width: 100px;
+    &:is(.name *) {
+      max-width: initial;
+    }
   }
   input:focus-visible {
     border-color: #444;

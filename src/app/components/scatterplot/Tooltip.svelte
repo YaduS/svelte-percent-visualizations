@@ -16,8 +16,9 @@
   left: {leftPosition}px;
   "
 >
-  <h2>Score: {data.score} / {data.total}</h2>
-  <p>{percent}%</p>
+  <h2>Name: {data.name}</h2>
+  <p>Score: {data.score} / {data.total}</p>
+  <p>Percent: {percent}%</p>
   <p>Hours: {data.hoursStudied}</p>
 </div>
 
@@ -33,7 +34,7 @@
     border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 4px;
     pointer-events: none;
-    transition: top 300ms linear, left 300ms linear;
-    width: 150px;
+    transition: top 250ms linear, left 250ms linear;
+    min-width: 150px;
   }
 </style>

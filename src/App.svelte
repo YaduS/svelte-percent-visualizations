@@ -28,4 +28,7 @@
   h1 {
     margin: 0 0 2rem;
   }
+  main {
+    max-width: 100%;
+  }
 </style>
