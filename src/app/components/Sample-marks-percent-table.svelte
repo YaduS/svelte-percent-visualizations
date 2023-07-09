@@ -7,15 +7,23 @@
   import { calcPercent } from '../services/util';
 </script>
 
+<em class="info">
+  <strong
+    >Edit underlined values by either typing them in (or using arrow keys after
+    selecting them for a smoother value change)</strong
+  >
+</em>
 <table class="table-bordered">
-  <tbody>
+  <thead>
     <tr>
-      <td><span>Select</span></td>
-      <td><span>Marks obtained</span></td>
-      <td><span>Out of Total Marks</span></td>
-      <td><span>Hours Studied</span></td>
-      <td><span>Percentage</span></td>
+      <th><span>Select</span></th>
+      <th><span>Marks obtained</span></th>
+      <th><span>Out of Total Marks</span></th>
+      <th><span>Hours Studied</span></th>
+      <th><span>Percentage</span></th>
     </tr>
+  </thead>
+  <tbody>
     {#each $data as scoreDetail (scoreDetail.id)}
       <tr>
         <td
@@ -67,16 +75,24 @@
 </table>
 
 <style lang="scss">
+  .info {
+    margin: 1rem auto;
+    max-width: 85%;
+    text-align: center;
+    display: block;
+  }
   table {
     border: 0.5px solid #444;
     overflow: hidden;
     border-radius: 8px;
     max-width: 100%;
     width: $table-width;
+    margin: auto;
   }
   table,
   tr,
-  td {
+  td,
+  th {
     border-collapse: separate;
     border-spacing: 0;
   }
@@ -84,10 +100,10 @@
     border: 0.5px solid #444;
     padding: 12px 8px;
   }
-  tr:first-child td:first-child {
+  th:first-child {
     border-top-left-radius: 8px;
   }
-  tr:first-child td:last-child {
+  th:last-child {
     border-top-right-radius: 8px;
   }
   tr:last-child td:first-child {
@@ -126,6 +142,8 @@
   }
   input {
     border: 0.5px solid transparent;
+    border-bottom-color: #444;
+    padding: 5px;
     border-radius: 2px;
     outline: none !important;
     background: none;
