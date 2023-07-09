@@ -42,7 +42,7 @@
   </div>
 </div>
 
-<style>
+<style lang="scss">
   .container {
     width: 100%;
     padding: 20px;
@@ -50,8 +50,9 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    --current-score-color: #039503;
-    --total-score-color: #a77213;
+    /* --current-score-color: #039503; */
+    --current-score-color: #{$current-score-color};
+    --total-score-color: #{$total-score-color};
   }
   .bar {
     height: 40px;

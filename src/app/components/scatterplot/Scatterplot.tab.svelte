@@ -1,7 +1,7 @@
 <script>
   import { max } from 'd3-array';
   import { scaleLinear } from 'd3-scale';
-  import { tableData } from '../../services/data.service';
+  import { selectedRowId, tableData } from '../../services/data.service';
   import { calcPercent } from '../../services/util';
   import AxisX from './AxisX.svelte';
   import AxisY from './AxisY.svelte';
@@ -41,6 +41,11 @@
   class="chart-container"
   bind:clientWidth={width}
   on:mouseleave={() => (hoverData = null)}
+  on:click={(e) => {
+    //todo: vscode showing error for 'matches' below saying it doesnt exit. check later
+    if (!e.target.matches('circle')) hoverData = null;
+  }}
+  on:keypress
 >
   <svg {width} {height}>
     <AxisX {height} {xScale} {width} {margin} />
@@ -51,13 +56,17 @@
           cx={xScale(row.hoursStudied)}
           cy={yScale(calcPercent(row.score, row.total))}
           r={hoverData && hoverData === row ? 16 : 8}
-          fill="purple"
+          fill={row.id === $selectedRowId
+            ? 'var(--selected-row-color)'
+            : 'var(--normal-row-color)'}
           stroke="black"
           opacity={getOpacity(row, hoverData, hovering)}
           on:focus={() => {}}
           on:mouseover={() => (hoverData = row)}
           on:mouseleave={() => (hovering = false)}
           on:mouseenter={() => (hovering = true)}
+          on:click={() => ($selectedRowId = row.id)}
+          on:keypress
         />
       {/each}
     </g>
@@ -67,4 +76,12 @@
   {/if}
 </div>
 
-<style lang="scss"></style>
+<style lang="scss">
+  .chart-container {
+    --selected-row-color: #{$current-score-color};
+    --normal-row-color: purple;
+  }
+  circle {
+    outline: none;
+  }
+</style>
