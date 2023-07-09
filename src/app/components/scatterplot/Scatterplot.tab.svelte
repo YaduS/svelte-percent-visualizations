@@ -27,6 +27,14 @@
     .range([height - margin.top - margin.bottom, 0]);
 
   let hoverData;
+  let hovering = false;
+  // to 2 second arguments are there so that we can
+  const getOpacity = (rowData, _hoverData, _hovering) => {
+    if (!hoverData) return 1;
+    if (hoverData.id === rowData.id) return 1;
+    if (hovering) return 0.5;
+    return 1;
+  };
 </script>
 
 <div
@@ -42,12 +50,15 @@
         <circle
           cx={xScale(row.hoursStudied)}
           cy={yScale(calcPercent(row.score, row.total))}
-          r="8"
+          r={hoverData && hoverData === row ? 16 : 8}
           fill="purple"
           stroke="black"
+          opacity={getOpacity(row, hoverData, hovering)}
+          on:focus={() => {}}
           on:mouseover={() => (hoverData = row)}
+          on:mouseleave={() => (hovering = false)}
+          on:mouseenter={() => (hovering = true)}
         />
-        <!-- todo: what is the way where we dont have to run calcPercent every time? --ys -->
       {/each}
     </g>
   </svg>
