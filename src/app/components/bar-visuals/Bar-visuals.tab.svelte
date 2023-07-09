@@ -12,7 +12,7 @@
     <span>Selected value visuals</span>
   </h2>
   <div class="inner">
-    <PercentVisual current={selectedRow.score} total={selectedRow.total} />
+    <PercentVisual dataId={selectedRow.id} />
   </div>
 </div>
 <div class="visualization-cnt" class:open={showTableVisualizations}>
@@ -27,7 +27,7 @@
   {#if showTableVisualizations}
     <div class="inner" transition:slide>
       {#each $tableData as row (row.id)}
-        <PercentVisual current={row.score} total={row.total} />
+        <PercentVisual dataId={row.id} />
       {/each}
     </div>
   {/if}

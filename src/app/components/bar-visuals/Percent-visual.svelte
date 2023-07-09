@@ -1,12 +1,22 @@
 <script>
+  import { tableData } from '../../services/data.service';
   import { calcPercent } from '../../services/util';
-  export let current;
-  export let total;
+  export let dataId;
+  let current, total, hoursStudied, name;
+  $: {
+    const selectedData = $tableData.find((e) => e.id === dataId);
+    current = selectedData.score;
+    total = selectedData.total;
+    hoursStudied = selectedData.hoursStudied;
+    name = selectedData.name;
+  }
   $: currentPercent = calcPercent(current, total);
   $: totalPercent = calcPercent(total, current);
 </script>
 
 <div class="container">
+  <strong>Name: {name}</strong>
+  <p>Hours Studied: {hoursStudied}</p>
   <div
     class="bar current"
     style="width: {currentPercent > totalPercent ? 100 : currentPercent}%;"
@@ -52,6 +62,10 @@
     gap: 10px;
     --current-score-color: #{$current-score-color};
     --total-score-color: #{$total-score-color};
+
+    > strong {
+      font-size: 1rem;
+    }
   }
   .bar {
     height: 40px;
@@ -60,13 +74,13 @@
     align-items: center;
     color: #fcfcfc;
     transition: all 0.5s;
-  }
-  em,
-  strong {
-    color: #fcfcfc;
-  }
-  em {
-    font-size: 0.75rem;
+    em,
+    strong {
+      color: #fcfcfc;
+    }
+    em {
+      font-size: 0.75rem;
+    }
   }
   .current {
     background-color: var(--current-score-color);

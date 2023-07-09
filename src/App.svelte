@@ -26,7 +26,7 @@
     box-sizing: border-box;
   }
   h1 {
-    margin: 0 0 2rem;
+    margin: 0;
   }
   main {
     max-width: 100%;
