@@ -152,7 +152,8 @@
       height: 100%;
     }
   }
-  td:first-child > tr:last-child {
+
+  tr:last-child {
     td {
       padding: 10px;
       button {
