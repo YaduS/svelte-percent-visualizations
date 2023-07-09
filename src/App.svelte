@@ -12,42 +12,6 @@
     <SamplePercentTable />
   </main>
   <Tabs />
-  <!-- <div
-    class="selected-visualization-cnt"
-    class:open={showSelectedTableVisualizations}
-  >
-    <h2>
-      <span>Selected value visuals</span>
-      <button
-        on:click={() =>
-          (showSelectedTableVisualizations = !showSelectedTableVisualizations)}
-      >
-        <i class="bi bi-caret-down-square-fill" />
-      </button>
-    </h2>
-    {#if showSelectedTableVisualizations}
-      <div class="inner" transition:slide>
-        <PercentVisual current={selectedRow.score} total={selectedRow.total} />
-      </div>
-    {/if}
-  </div>
-  <div class="visualization-cnt" class:open={showTableVisualizations}>
-    <h2>
-      <span>Table value visuals</span>
-      <button
-        on:click={() => (showTableVisualizations = !showTableVisualizations)}
-      >
-        <i class="bi bi-caret-down-square-fill" />
-      </button>
-    </h2>
-    {#if showTableVisualizations}
-      <div class="inner" transition:slide>
-        {#each $tableData as row (row.id)}
-          <PercentVisual current={row.score} total={row.total} />
-        {/each}
-      </div>
-    {/if}
-  </div> -->
 </div>
 
 <style lang="scss">
