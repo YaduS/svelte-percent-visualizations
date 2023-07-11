@@ -11,19 +11,19 @@
   let height = 400;
   const margin = { top: 30, right: 70, bottom: 50, left: 0 };
 
-  // few reactive declarations for calculating maxHours and maxPercent
-  $: maxHoursStudied = max($tableData, (e) => e.hoursStudied * 1.1); // adding a 10% right margin by multiplying with 1.1;
-  // find out how to get the same effect using just d3 mode
-  $: maxPercentage = max($tableData, (e) => {
-    if (e.score && e.total) return +calcPercent(e.score, e.total) * 1.1;
-    else return 0;
-  });
+  $: xDomain = [0, max($tableData, (e) => e.hoursStudied) * 1.1];
+  $: yDomain = [
+    0,
+    max($tableData, (e) =>
+      e.score && e.total ? +calcPercent(e.score, e.total) : 0
+    ) * 1.1,
+  ];
 
   $: xScale = scaleLinear()
-    .domain([0, maxHoursStudied])
+    .domain(xDomain)
     .range([0, width - margin.left - margin.right]);
   $: yScale = scaleLinear()
-    .domain([0, maxPercentage])
+    .domain(yDomain)
     .range([height - margin.top - margin.bottom, 0]);
 
   let hoverData;
