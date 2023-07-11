@@ -9,7 +9,7 @@
 
   let width = 400;
   let height = 400;
-  const margin = { top: 30, right: 70, bottom: 50, left: 0 };
+  const margin = { top: 10, right: 70, bottom: 50, left: 0 };
 
   $: xDomain = [0, max($tableData, (e) => e.hoursStudied) * 1.1];
   $: yDomain = [
